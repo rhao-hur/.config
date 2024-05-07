@@ -26,7 +26,7 @@ curl -sL install-node.vercel.app/lts | bash
 - `cp` config file
 ```
 cd ~/Desktop/
-git clone https://github.com/rhao-hur/.config
+git clone https://github.com/rhao-hur/.config.git
 cp -r .config./nvim ~/.config/
 cp -r .config./tmux ~/.config/
 cp -r .config./ranger ~/.config/
