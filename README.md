@@ -98,28 +98,28 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 
 
-### Vim plug vim-instant-markdown
+#### Vim plug vim-instant-markdown
 
-- **快速开始**（假设您已安装所有必需的依赖项）：
+- **Quick start**（假设您已安装所有必需的依赖项）：
 
 - 通过以下任一方式安装Node.js迷你服务器：
 
   - `[sudo] npm -g install instant-markdown-d` 或者，对于预发布版本：
   - `[sudo] npm -g install instant-markdown-d@next`
 
-  或者使用以下命令安装Python迷你服务器（还需要 [pandoc][pandoc] 渲染markdown）：
+  或者使用以下命令安装Python迷你服务器（还需要 [pandoc](https://pandoc.org/) 渲染markdown）：
 
   - `pip install --user smdv`
 
 * 根据您选择的插件管理器，将以下内容添加到您的 `.vimrc` 中：
 
-  - [vim-plug][plug]
+  - [vim-plug](https://github.com/junegunn/vim-plug)
 
     ```vim
     Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
     ```
 
-  - [Vundle][vundle]
+  - [Vundle](https://github.com/VundleVim/Vundle.vim)
 
     ```vim
     Plugin 'instant-markdown/vim-instant-markdown'
@@ -139,7 +139,7 @@ sudo fc-cache -fv # 刷新系统字体缓存
 - 如果您使用的是Linux，请确保安装了以下软件包：
   - `xdg-utils`
   - `curl`
-  - `nodejs`（确保您使用的是最新稳定版本。[如果需要，请使用 `n` 安装 `node`][n]。）
+  - `nodejs`（确保您使用的是最新稳定版本。[如果需要，请使用 `n` 安装 `node`](https://github.com/tj/n)。）
 
 
 
@@ -147,19 +147,25 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 
 
-#### Coc插件clangd
 
-- **快速开始**
+
+
+#### Coc plug clangd
+
+- **Quick start**
 
 - 安装 [Node.js](https://nodejs.org/en/)。`coc.nvim` 和 `coc-clangd` 需要在Node.js上运行。
-- 安装 `coc.nvim`。使用 `vim-plug` 的指令（查看 [coc.nvim Wiki][] 其他选项）：
+- 安装 `coc.nvim`。使用 `vim-plug` 的指令
   - 添加到 `.vimrc`：`vim Plug 'neoclide/coc.nvim', {'branch': 'release'}`
   - 在vim中运行 `:PlugInstall`
 - 在vim中运行 `:CocInstall coc-clangd`
-- `coc-clangd` 将尝试从您的 `$PATH` 中找到 `clangd`，如果找不到，您可以运行 `:CocCommand clangd.install` 从GitHub安装[最新版本][]。
-1. 遵循[项目设置][]为您的项目生成 `compile_commands.json`
+- `coc-clangd` 将尝试从您的 `$PATH` 中找到 `clangd`，如果找不到，您可以运行 `:CocCommand clangd.install` 从GitHub安装[最新版本](https://github.com/clangd/clangd/releases)。
+1. 遵循[项目设置](https://clangd.llvm.org/installation.html#project-setup)为您的项目生成 `compile_commands.json`
 
 > **注意**: 如果您在 `coc-settings.json` 中将 `clangd` 配置为 languageServer，则应将其移除以避免两次运行 clangd！
+
+
+
 
 
 
