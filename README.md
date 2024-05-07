@@ -16,9 +16,7 @@
 sudo apt-get install ranger
 ```
 
-- 配置`ranger`
-
-- 生成配置文件
+- 配置`ranger`，生成配置文件
 ```
 ranger --copy-config=all
 ```
