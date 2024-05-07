@@ -1,3 +1,42 @@
+# Quicker start 
+- 安装各类依赖包
+```
+sudo apt-get update
+sudo apt-get install tmux
+sudo apt-get install ranger
+
+sudo apt-get install neovim
+sudo apt install python3-neovim
+
+python3 -m pip install pynvim --upgrade
+
+sudo mkdir -p /usr/share/fonts && \
+sudo wget -O /usr/share/fonts/SourceCodePro.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/SourceCodePro.zip && \
+sudo unzip -d /usr/share/fonts /usr/share/fonts/SourceCodePro.zip && \
+sudo rm /usr/share/fonts/SourceCodePro.zip && \
+sudo mkfontscale && \
+sudo mkfontdir && \
+sudo fc-cache -fv
+
+sudo npm -g install instant-markdown-d
+sudo apt-get install xdg-utils curl
+
+curl -sL install-node.vercel.app/lts | bash
+```
+- `cp` config file
+```
+cd ~/Desktop/
+git clone https://github.com/rhao-hur/.config
+cp -r .config./nvim ~/.config/
+cp -r .config./tmux ~/.config/
+cp -r .config./ranger ~/.config/
+
+nvim ~/.config/nvim/init.vim
+:CocCommand clangd.install
+
+```
+
+
 # .config
 
 对于配置 everything 的说明
@@ -80,13 +119,12 @@ python3 -m pip install pynvim --upgrade
 
 
 
-
-
 #### Vim plug [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 - 需要前往`nerd-fonts`下载字体，首先下载文件（这里下载`SourceCodePro`字体）
 ```
-wget -c https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip
+wget -c https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/SourceCodePro.zip
+
 ```
 
 - 然后解压到文件夹:
