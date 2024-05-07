@@ -31,6 +31,7 @@ cp -r .config./nvim ~/.config/
 cp -r .config./tmux ~/.config/
 cp -r .config./ranger ~/.config/
 
+apt-get install bear
 nvim ~/.config/nvim/init.vim
 :CocCommand clangd.install
 
