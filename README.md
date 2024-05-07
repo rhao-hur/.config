@@ -6,10 +6,16 @@
 
 
 
+### [tmux](https://github.com/tmux/tmux)
+
+- 安装`tmux`
+```
+sudo apt-get install tmux
+```
 
 
 
-### ranger
+### [ranger](https://github.com/ranger/ranger)
 
 - 安装`ranger`
 ```
@@ -34,10 +40,15 @@ scope.sh    - 用于指定预览程序的文件
 
 
 
-### neovim
+### neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 - 安装`neovim`
 ```
 sudo apt-get install neovim
+```
+
+Python（:python）支持自动安装
+```
+sudo apt install python3-neovim
 ```
 
 - 直接cp `nvim` 文件夹中的配置文件到~/.config/nvim/，内容如下
@@ -58,7 +69,7 @@ init.vim    			- neovim 配置文件
 
 
 
-#### Vim plug Semshi
+#### Vim plug [Semshi](https://github.com/numirias/semshi)
 - 需满足`3.6 <= python <= 3.11`，并安装`pynvim`
 ```
 python3 -m pip install pynvim --upgrade
@@ -71,7 +82,7 @@ python3 -m pip install pynvim --upgrade
 
 
 
-#### Vim plug vim-devicons
+#### Vim plug [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 - 需要前往`nerd-fonts`下载字体，首先下载文件（这里下载`SourceCodePro`字体）
 ```
@@ -96,7 +107,7 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 
 
-#### Vim plug vim-instant-markdown
+#### Vim plug [vim-instant-markdown](https://github.com/instant-markdown/vim-instant-markdown)
 
 - **Quick start**（假设您已安装所有必需的依赖项）：
 
@@ -148,7 +159,7 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 
 
-#### Coc plug clangd
+#### Coc plug [clangd](https://github.com/clangd/coc-clangd)
 
 - **Quick start**
 
