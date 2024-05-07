@@ -109,7 +109,7 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 #### Vim plug [vim-instant-markdown](https://github.com/instant-markdown/vim-instant-markdown)
 
-- **Quick start**（假设您已安装所有必需的依赖项）：
+**Quick start**（假设您已安装所有必需的依赖项）：
 
 - 通过以下任一方式安装Node.js迷你服务器：
 
@@ -151,17 +151,33 @@ sudo fc-cache -fv # 刷新系统字体缓存
   - `nodejs`（确保您使用的是最新稳定版本。[如果需要，请使用 `n` 安装 `node`](https://github.com/tj/n)。）
 
 
+#### Vim plug [coc.nvim](https://github.com/neoclide/coc.nvim/tree/master)
+**Quick start**
 
+- 确保使用 Vim >= 8.1.1719 或 Neovim >= 0.4.0。
 
+- 安装 [nodejs](https://nodejs.org/en/download/) >= 16.18.0：
+```bash
+curl -sL install-node.vercel.app/lts | bash
+```
 
+- 对于 vim-plug 用户：
+```
+" 使用发布版本分支（推荐）
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" 或者通过 npm 构建源代码
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+```
+
+在你的 `.vimrc` 或 `init.vim` 中添加以上配置，然后重新启动 Vim 并运行 `:PlugInstall`
 
 
 
 
 #### Coc plug [clangd](https://github.com/clangd/coc-clangd)
 
-- **Quick start**
+**Quick start**
 
 - 安装 [Node.js](https://nodejs.org/en/)。`coc.nvim` 和 `coc-clangd` 需要在Node.js上运行。
 - 安装 `coc.nvim`。使用 `vim-plug` 的指令
