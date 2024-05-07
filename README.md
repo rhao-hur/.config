@@ -18,7 +18,7 @@ sudo apt-get install ranger
 
 - 配置`ranger`
 
-1. 生成配置文件
+- 生成配置文件
 ```
 ranger --copy-config=all
 ```
@@ -29,7 +29,7 @@ commands.py - 能通过 : 执行的命令
 rifle.conf  - 指定不同类型的文件的默认打开程序。
 scope.sh    - 用于指定预览程序的文件
 ```
-2. 修改rc.conf文件，见xx
+- 修改rc.conf文件，见xx
 
 
 
@@ -98,22 +98,20 @@ sudo fc-cache -fv # 刷新系统字体缓存
 
 
 
-#### Vim plug vim-instant-markdown
+### Vim plug vim-instant-markdown
 
-- **Quick start** (assuming you have all the necessary dependencies):
+- **快速开始**（假设您已安装所有必需的依赖项）：
 
-- Install the Node.js mini-server by running either:
+- 通过以下任一方式安装Node.js迷你服务器：
 
-  - `[sudo] npm -g install instant-markdown-d` or, for the pre-release version:
+  - `[sudo] npm -g install instant-markdown-d` 或者，对于预发布版本：
   - `[sudo] npm -g install instant-markdown-d@next`
 
-  or the following command for the Python mini-server (which also requires
-  [pandoc][pandoc] to render markdown):
+  或者使用以下命令安装Python迷你服务器（还需要 [pandoc][pandoc] 渲染markdown）：
 
   - `pip install --user smdv`
 
-* Add the following to your `.vimrc`, depending on the plugin manager of your
-  choice:
+* 根据您选择的插件管理器，将以下内容添加到您的 `.vimrc` 中：
 
   - [vim-plug][plug]
 
@@ -126,40 +124,43 @@ sudo fc-cache -fv # 刷新系统字体缓存
     ```vim
     Plugin 'instant-markdown/vim-instant-markdown'
     ```
-  - Vim8 built-in package manager (Execute the following command instead of adding it to `.vimrc`)
+
+  - Vim8内置包管理器（将以下命令放入 `.vimrc` 中的位置）
 
 	```shell
-    # NOTE:
-    # 1. Please check you have git installed.
-    # 2. Please replace * with a package name you want.
+    # 注意:
+    # 1. 请确保您已安装git。
+    # 2. 请将*替换为您想要的包名称。
     git clone https://github.com/instant-markdown/vim-instant-markdown.git ~/.vim/pack/*/start/
 	```
 
-- **Detailed instructions**
+- **详细说明**
 
-- If you're on Linux, ensure the following packages are installed:
+- 如果您使用的是Linux，请确保安装了以下软件包：
   - `xdg-utils`
   - `curl`
-  - `nodejs` (Ensure that you are using a recent stable version. [Install `node` using `n` if needed][n].)
-  
-  
-  
-  
+  - `nodejs`（确保您使用的是最新稳定版本。[如果需要，请使用 `n` 安装 `node`][n]。）
 
 
-#### Coc plug clangd
 
-- **Quick Start**
 
-- install [Node.js](https://nodejs.org/en/). `coc.nvim` and `coc-clangd` run on Node.js.
-- install `coc.nvim`. Instructions using `vim-plug` (check out [coc.nvim Wiki][] other options):
-  - add to `.vimrc`: `vim Plug 'neoclide/coc.nvim', {'branch': 'release'}`
-  - in vim, run `:PlugInstall`
-- in vim, run `:CocInstall coc-clangd`
-- `coc-clangd` will try to find `clangd` from your `$PATH`, if not found, you can run `:CocCommand clangd.install` to install the [latest release][] from GitHub
-1. follow [Project setup][] to generate `compile_commands.json` for your project
 
-> **Note**: If you've configured `clangd` as a languageServer in `coc-settings.json`, you should remove it to avoid running clangd twice!
+
+
+#### Coc插件clangd
+
+- **快速开始**
+
+- 安装 [Node.js](https://nodejs.org/en/)。`coc.nvim` 和 `coc-clangd` 需要在Node.js上运行。
+- 安装 `coc.nvim`。使用 `vim-plug` 的指令（查看 [coc.nvim Wiki][] 其他选项）：
+  - 添加到 `.vimrc`：`vim Plug 'neoclide/coc.nvim', {'branch': 'release'}`
+  - 在vim中运行 `:PlugInstall`
+- 在vim中运行 `:CocInstall coc-clangd`
+- `coc-clangd` 将尝试从您的 `$PATH` 中找到 `clangd`，如果找不到，您可以运行 `:CocCommand clangd.install` 从GitHub安装[最新版本][]。
+1. 遵循[项目设置][]为您的项目生成 `compile_commands.json`
+
+> **注意**: 如果您在 `coc-settings.json` 中将 `clangd` 配置为 languageServer，则应将其移除以避免两次运行 clangd！
+
 
 
 
