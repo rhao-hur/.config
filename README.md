@@ -40,7 +40,7 @@ scope.sh    - 用于指定预览程序的文件
 
 
 
-### neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+### [neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 - 安装`neovim`
 ```
 sudo apt-get install neovim
