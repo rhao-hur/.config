@@ -6,25 +6,26 @@
 
 " Author: @ruahao
 " ==================== Auto load for first time uses ====================
-  " if empty(glob($HOME.'/.config/nvim/autoload/plug.vim'))
-  "    silent !curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs
-  "                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  "    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  " endif
-  "
-  " let g:nvim_plugins_installation_completed=1
-  " if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
-  "    let g:nvim_plugins_installation_completed=0
-  "    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  " endif
-  "
-  " " Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location 
-  " let has_machine_specific_file = 1
-  " if empty(glob('~/.config/nvim/_machine_specific.vim'))
-  "    let has_machine_specific_file = 0
-  "    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-  " endif
-  " source $HOME/.config/nvim/_machine_specific.vim
+if empty(glob($HOME.'/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+let g:nvim_plugins_installation_completed=1
+if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
+    let g:nvim_plugins_installation_completed=0
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location 
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+    let has_machine_specific_file = 0
+    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+
+source $HOME/.config/nvim/_machine_specific.vi
 
 " ==================== Editor behavior ====================
 "set clipboard=unnamedplus         " 设置剪贴板为系统剪贴板
@@ -351,7 +352,7 @@ Plug 'mbbill/undotree'
 
 " Python
 " RUN `sudo apt install python3-neovim` to install pynvim
-Plug 'wookayin/semshi', { 'do': ':UpdateRemotePlugins', 'tag': '*' }
+" Plug 'wookayin/semshi', { 'do': ':UpdateRemotePlugins', 'tag': '*' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 
 " Editor Enhancement
@@ -424,27 +425,26 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.
 " 1. (python<=3.11)conda env to install `python3 -m pip install pynvim --upgrade`,
 " 2. Plug 'wookayin/semshi', { 'do': ':UpdateRemotePlugins', 'tag': '*' }
 " 3. RUN `:UpdateRemotePlugins`
-let g:semshi#enabled = 1
-
-function MyCustomHighlights()
-	" 暗色系调整
-	hi semshiLocal           ctermfg=208 guifg=#d7875f
-	hi semshiGlobal          ctermfg=208 guifg=#d7875f
-	hi semshiImported        ctermfg=208 guifg=#d7875f cterm=bold gui=bold
-	hi semshiParameter       ctermfg=74  guifg=#87afd7
-	hi semshiParameterUnused ctermfg=117 guifg=#87afd7 cterm=underline gui=underline
-	hi semshiFree            ctermfg=244 guifg=#afafaf
-	hi semshiBuiltin         ctermfg=208 guifg=#d7875f
-	hi semshiAttribute       ctermfg=72  guifg=#87d7af
-	hi semshiSelf            ctermfg=244 guifg=#afafaf
-	hi semshiUnresolved      ctermfg=222 guifg=#ffff00 cterm=underline gui=underline
-	hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=239 guibg=#3a3a3a
-	
-	hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-	hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-	sign define semshiError text=E> texthl=semshiErrorSign
-endfunction
-autocmd FileType python call MyCustomHighlights()
+" let g:semshi#enabled = 1
+" function MyCustomHighlights()
+" 	" 暗色系调整
+" 	hi semshiLocal           ctermfg=208 guifg=#d7875f
+" 	hi semshiGlobal          ctermfg=208 guifg=#d7875f
+" 	hi semshiImported        ctermfg=208 guifg=#d7875f cterm=bold gui=bold
+" 	hi semshiParameter       ctermfg=74  guifg=#87afd7
+" 	hi semshiParameterUnused ctermfg=117 guifg=#87afd7 cterm=underline gui=underline
+" 	hi semshiFree            ctermfg=244 guifg=#afafaf
+" 	hi semshiBuiltin         ctermfg=208 guifg=#d7875f
+" 	hi semshiAttribute       ctermfg=72  guifg=#87d7af
+" 	hi semshiSelf            ctermfg=244 guifg=#afafaf
+" 	hi semshiUnresolved      ctermfg=222 guifg=#ffff00 cterm=underline gui=underline
+" 	hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=239 guibg=#3a3a3a
+"
+" 	hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+" 	hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+" 	sign define semshiError text=E> texthl=semshiErrorSign
+" endfunction
+" autocmd FileType python call MyCustomHighlights()
 
 " ==================== onehalf ====================
 set background=light
