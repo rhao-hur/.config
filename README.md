@@ -1,6 +1,6 @@
 # Quicker start 
 - 安装各类依赖包
-```
+```bash
 sudo apt-get update
 sudo apt-get install tmux
 sudo apt-get install ranger
@@ -8,33 +8,27 @@ sudo apt-get install ranger
 sudo apt-get install neovim
 sudo apt install python3-neovim
 
-python3 -m pip install pynvim --upgrade
-
-sudo mkdir -p /usr/share/fonts && \
-sudo wget -O /usr/share/fonts/SourceCodePro.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/SourceCodePro.zip && \
-sudo unzip -d /usr/share/fonts /usr/share/fonts/SourceCodePro.zip && \
-sudo rm /usr/share/fonts/SourceCodePro.zip && \
-sudo mkfontscale && \
-sudo mkfontdir && \
-sudo fc-cache -fv
-
 sudo npm -g install instant-markdown-d
 sudo apt-get install xdg-utils curl
-
-curl -sL install-node.vercel.app/lts | bash
 ```
+
+- Installation nodejs 
+
+  - `curl -sL install-node.vercel.app/lts | bash ` or
+  - `curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash - ; sudo apt-get install -y nodejs`
+
+
 - `cp` config file
 ```
 cd ~/Desktop/
 git clone https://github.com/rhao-hur/.config.git
-cp -r .config./nvim ~/.config/
-cp -r .config./tmux ~/.config/
-cp -r .config./ranger ~/.config/
+cp -r .config/nvim ~/.config/
+cp -r .config/tmux ~/.config/
+cp -r .config/ranger ~/.config/
 
 apt-get install bear
 nvim ~/.config/nvim/init.vim
 :CocCommand clangd.install
-
 ```
 
 
@@ -73,7 +67,7 @@ commands.py - 能通过 : 执行的命令
 rifle.conf  - 指定不同类型的文件的默认打开程序。
 scope.sh    - 用于指定预览程序的文件
 ```
-- 修改rc.conf文件，见xx
+- 修改rc.conf文件
 
 
 
@@ -101,47 +95,6 @@ init.vim    			- neovim 配置文件
 ```
 
 - 打开`nvim`后，自动下载`vim plug`与`coc.vim`插件
-
-
-
-
-
-
-
-
-#### Vim plug [Semshi](https://github.com/numirias/semshi)
-- 需满足`3.6 <= python <= 3.11`，并安装`pynvim`
-```
-python3 -m pip install pynvim --upgrade
-````
-- 在`vim`中打开`python`文件，运行`:UpdateRemotePlugins`
-
-
-
-
-
-#### Vim plug [vim-devicons](https://github.com/ryanoasis/vim-devicons)
-
-- 需要前往`nerd-fonts`下载字体，首先下载文件（这里下载`SourceCodePro`字体）
-```
-wget -c https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/SourceCodePro.zip
-
-```
-
-- 然后解压到文件夹:
-```
-sudo unzip SourceCodePro -d /usr/share/fonts/SourceCodePro
-```
-
-- 转到`/usr/share/fonts/SourceCodePro`目录，并安装
-```
-cd /usr/share/fonts/SourceCodePro
-sudo mkfontscale # 生成核心字体信息
-sudo mkfontdir # 生成字体文件夹
-sudo fc-cache -fv # 刷新系统字体缓存
-```
-
-
 
 
 
@@ -224,7 +177,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
   - 在vim中运行 `:PlugInstall`
 - 在vim中运行 `:CocInstall coc-clangd`
 - `coc-clangd` 将尝试从您的 `$PATH` 中找到 `clangd`，如果找不到，您可以运行 `:CocCommand clangd.install` 从GitHub安装[最新版本](https://github.com/clangd/clangd/releases)。
-1. 遵循[项目设置](https://clangd.llvm.org/installation.html#project-setup)为您的项目生成 `compile_commands.json`
+- 遵循[项目设置](https://clangd.llvm.org/installation.html#project-setup)为您的项目生成 `compile_commands.json`
 
 > **注意**: 如果您在 `coc-settings.json` 中将 `clangd` 配置为 languageServer，则应将其移除以避免两次运行 clangd！
 
