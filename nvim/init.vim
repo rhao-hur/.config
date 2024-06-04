@@ -8,14 +8,14 @@ set secure                         " 安全模式
 set number                         " 显示行号
 set relativenumber                 " 使用相对行号
 set cursorline                     " 高亮当前行
-set noexpandtab                    " 使用空格代替 Tab
-set tabstop=4                      " 设置 Tab 宽度为 4 个空格
-set shiftwidth=4                   " 设置自动缩进宽度为 4 个空格
-set softtabstop=4                  " 设置软 Tab 宽度为 4 个空格
-set breakindent
-set smartindent
+set expandtab                    " 使用空格代替 Tab
+set tabstop=4                    " 设置 Tab 宽度为 4 个空格
+set shiftwidth=4                 " 设置自动缩进宽度为 4 个空格
+set softtabstop=4                " 设置软 Tab 宽度为 4 个空格
+set breakindent                  " 启用断行缩进
+set smartindent                  " 启用智能缩进
+set autoindent                   " 启用自动缩进
 
-set autoindent                     " 自动缩进
 set list                           " 显示不可见字符
 set listchars=tab:\|\ ,trail:▫     " 自定义可见字符
 set scrolloff=4                    " 光标距离窗口边缘 4 行时开始滚动
@@ -133,14 +133,14 @@ noremap <C-K> 5<C-e>
 unmap <C-i>
 unmap <C-k>
 
-" ==================== Insert Mode Cursor Movement ====================
+" ==================== Insert Mode Cursor Movement ======
 " move to the end of line
 inoremap <C-a> <ESC>A
 
 " move to the start of line
 inoremap <C-h> <ESC>I
 
-" ==================== Window management ====================
+" ==================== Window management ================
 " Use <space> + new arrow keys for moving the cursor around windows
 noremap <LEADER>l <C-w>l
 noremap <LEADER>j <C-w>h
@@ -173,7 +173,7 @@ noremap sv <C-w>t<C-w>H
 noremap srh <C-w>b<C-w>K
 noremap srv <C-w>b<C-w>H
 
-" ==================== Tab management ====================
+" ==================== Tab management ======================
 " Create a new tab with ti
 noremap ti :tabe<CR>
 noremap tI :tab split<CR>
@@ -186,18 +186,35 @@ noremap tl :+tabnext<CR>
 noremap tJ :-tabmove<CR>
 noremap tL :+tabmove<CR>
 
-" ==================== Markdown Settings ====================
+" ==================== Markdown Settings ===================
 " Snippets
 source $HOME/.config/nvim/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 
-" ==================== Other useful stuff ====================
+" ==================== Other useful stuff ==================
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
 
 " quit highlight
 noremap <Leader>\ :nohlsearch<CR>
+
+" create pyright config file
+function! CreatePyrightConfig(extra_paths)
+    let config_file = 'pyrightconfig.json'
+    let paths = split(a:extra_paths)
+    let content = {
+    \    "extraPaths": paths
+    \}
+
+    " 将内容写入文件
+    call writefile([json_encode(content)], config_file)
+
+    " 提示用户配置已创建
+    echo "Pyright configuration file created: " . config_file
+endfunction
+
+command! -nargs=1 CreatePyrightConfig call CreatePyrightConfig(<q-args>)
 
 " Compile function
 noremap r :call CompileRunGcc()<CR>
@@ -264,7 +281,8 @@ call plug#begin('$HOME/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Python
-"
+Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 
 " Editor Enhancement
 Plug 'jiangmiao/auto-pairs'
@@ -273,6 +291,7 @@ Plug 'theniceboy/tcomment_vim' " in <space>cn to comment a line
 
 " Editor theme
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'navarasu/onedark.nvim'
 
 " Other visual enhancement
 Plug 'vim-airline/vim-airline'
@@ -300,22 +319,30 @@ let g:coc_global_extensions = [
 " 打开 coc-explorer
 nmap ff :CocCommand explorer<CR>
 
-" 当弹出菜单可见时，使用 <Shift-Tab> 切换到上一个选项，否则退格
-inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" 当弹出菜单可见时，使用 <Tab> 切换到下一个选项，否则插入一个制表符
-inoremap <silent><expr> <Tab>
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
-" 按 <CR> 键确认选中的补全项或格式化当前行
-" <C-g>u 会中断当前的撤销，可以根据个人喜好进行更改
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " 按 <C-space> 刷新 coc
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-o> coc#refresh()
 
 " 显示当前光标下符号的文档
 function! Show_documentation()
@@ -388,11 +415,24 @@ let g:VM_maps['Skip Region']        = '<c-l>'
 let g:VM_maps['Undo']               = 'u'
 let g:VM_maps['Redo']               = '<C-r>'
 
-" ==================== onehalf ==========================
+" ==================== Editor theme ==========================
+" onehalflight
 set background=light
 colorscheme onehalflight
 highlight Normal guibg=NONE ctermbg=NONE
 highlight NonText guibg=NONE ctermbg=NONE
+
+" onedark
+" let g:onedark_config = {
+"   \ 'style': 'deep',
+"   \ 'toggle_style_key': '<leader>ts',
+"   \ 'ending_tildes': v:true,
+"   \ 'diagnostics': {
+"     \ 'darker': v:true,
+"     \ 'background': v:true,
+"   \ },
+" \ }
+" colorscheme onedark
 
 " ==================== vim-instant-markdown ==============
 let g:instant_markdown_slow = 0
@@ -426,3 +466,6 @@ let g:indent_guides_start_level = 4  " 从第4层开始可视化显示缩进
 noremap <LEADER>tm :TableModeToggle<CR>
 "let g:table_mode_disable_mappings = 1
 let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+
+" ==================== coc roote config ========================
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
