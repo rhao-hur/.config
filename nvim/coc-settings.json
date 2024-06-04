@@ -56,6 +56,16 @@
 		"]c": "gitNext",
 		"<<": "gitStage",
 		">>": "gitUnstage"
-  },
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
+	},
+
+
+	"coc.preferences.formatOnSave": false,
+
+	"python.analysis.diagnosticSeverityOverrides": {
+		"reportOptionalMemberAccess": "warning",
+		"reportArgumentType": "warning",
+		"reportIncompatibleMethodOverride":"warning",
+		"reportOptionalSubscript":"warning"
+	},
+	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
 }
